@@ -108,7 +108,7 @@ export default function Register() {
           placeholder="Username"
           value={formData.username}
           onChange={handleChange}
-          className="w-full p-2 mb-3 border rounded"
+          className="w-full p-2 mb-3 border rounded text-black" // Added text-black class
           autoComplete="username"
           required
         />
@@ -118,7 +118,7 @@ export default function Register() {
           placeholder="Email"
           value={formData.email}
           onChange={handleChange}
-          className="w-full p-2 mb-3 border rounded"
+          className="w-full p-2 mb-3 border rounded text-black" // Added text-black class
           autoComplete="email"
           required
         />
@@ -128,7 +128,7 @@ export default function Register() {
           placeholder="Password"
           value={formData.password}
           onChange={handleChange}
-          className="w-full p-2 mb-3 border rounded"
+          className="w-full p-2 mb-3 border rounded text-black" // Added text-black class
           autoComplete="new-password"
           required
         />

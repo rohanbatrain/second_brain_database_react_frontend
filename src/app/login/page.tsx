@@ -55,7 +55,7 @@ export default function Login() {
             if (response.ok) {
                 const data = await response.json();
                 setSuccess("Login successful! Redirecting to dashboard...");
-                localStorage.setItem("authToken", data.token);
+                localStorage.setItem("Token", data.token);
                 setFormData({ email: "", password: "" });
 
                 setRedirecting(true);
@@ -103,7 +103,7 @@ export default function Login() {
                     placeholder="Email"
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full p-2 mb-3 border rounded"
+                    className="w-full p-2 mb-3 border rounded text-black"
                     autoComplete="email"
                     required
                 />
@@ -113,7 +113,7 @@ export default function Login() {
                     placeholder="Password"
                     value={formData.password}
                     onChange={handleChange}
-                    className="w-full p-2 mb-3 border rounded"
+                    className="w-full p-2 mb-3 border rounded text-black"
                     autoComplete="current-password"
                     required
                 />
