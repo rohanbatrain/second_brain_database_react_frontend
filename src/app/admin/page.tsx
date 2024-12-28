@@ -50,7 +50,9 @@ const Sidebar = () => {
                     {activeMenu === null ? (
                         <>
                             <li className={`parent-menu ${activeMenu === 'plan' ? 'active' : ''}`} onClick={() => toggleSubMenu('plan')}>
-                                {isOpen ? 'Plan' : <FaMoneyBill style={{ color: 'var(--background)', margin: '0 auto', display: 'block' }} />}
+                                <Link href="#">
+                                    {isOpen ? 'Plan' : <FaMoneyBill style={{ color: 'var(--background)', margin: '0 auto', display: 'block' }} />}
+                                </Link>
                             </li>
                         </>
                     ) : (
