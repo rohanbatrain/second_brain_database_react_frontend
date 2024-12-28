@@ -1,0 +1,190 @@
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background-color: var(--foreground);
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    color: var(--background);
+    position: fixed;
+    top: 0;
+    left: 0;
+    transition: width 0.3s;
+    overflow: hidden;
+    font-family: var(--font-family);
+}
+
+.sidebar.closed {
+    width: 80px;
+}
+
+.sidebar h2 {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    color: var(--secondary-color);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-top: 60px; /* Ensure the text is not overlapped by the toggle button */
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 20px; /* Adjust this value to pull down the menu */
+}
+
+.sidebar ul li {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    /* padding-left: ; Add padding to align icons */
+}
+
+.sidebar.closed ul li {
+    padding-top: 25px;
+    /* padding-left: 20px; Adjust padding for closed sidebar */
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: var(--background);
+    font-size: 1.2em;
+    display: block;
+    padding: 10px;
+    border-radius: var(--border-radius);
+    transition: background-color 0.3s, color 0.3s;
+    flex-grow: 1;
+}
+
+.sidebar ul li a .icon {
+    margin-right: 10px;
+    min-width: 24px; /* Adjust based on your icon size */
+    text-align: center;
+}
+
+.sidebar.closed ul li a .icon {
+    margin-right: 0;
+    flex-grow: 0;
+}
+
+.sidebar ul li a:hover {
+    background-color: var(--primary-color);
+    color: var(--foreground);
+}
+
+/* Styles for parent menu item */
+.sidebar ul li .parent-menu {
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.sidebar ul li .parent-menu:hover {
+    background-color: var(--primary-color);
+    color: var(--foreground);
+}
+
+/* Styles for sub-menu items */
+.sidebar ul li .sub-menu {
+    display: none;
+    list-style-type: none;
+    padding-left: 20px;
+}
+
+.sidebar ul li .sub-menu li {
+    margin-bottom: 10px;
+}
+
+.sidebar ul li .sub-menu li a {
+    font-size: 1em;
+    padding: 8px;
+}
+
+/* Show sub-menu when parent menu is active */
+.sidebar ul li.active .sub-menu {
+    display: block;
+}
+
+/* Styles for the back button */
+.sidebar ul li .back-button {
+    display: none;
+    cursor: pointer;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.sidebar.closed ul li .back-button {
+    display: block;
+    color: var(--background);
+}
+
+/* Adjust visibility of sub-menu items when sidebar is closed */
+.sidebar.closed ul li .sub-menu {
+    display: block;
+}
+
+.toggle-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background-color: var(--foreground);
+    color: var(--background);
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 1000;
+    border-radius: var(--border-radius);
+}
+
+.admin-container {
+    display: flex;
+}
+
+.form-container {
+    margin-left: 250px; /* Adjust based on sidebar width */
+    padding: 20px;
+    flex-grow: 1;
+}
+
+.sidebar.closed + .form-container {
+    margin-left: 80px; /* Adjust based on closed sidebar width */
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 200px;
+    }
+
+    .sidebar.closed {
+        width: 60px;
+    }
+
+    .sidebar ul li a {
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 576px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+
+    .sidebar.closed {
+        width: 100%;
+    }
+
+    .sidebar ul {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .sidebar ul li {
+        margin-bottom: 10px;
+    }
+
+    .sidebar ul li a {
+        font-size: 1em;
+        padding: 8px;
+    }
+}
