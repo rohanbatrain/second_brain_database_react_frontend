@@ -133,6 +133,8 @@
     cursor: pointer;
     z-index: 1000;
     border-radius: var(--border-radius);
+    width: auto; /* Ensure the button does not overflow */
+    height: auto; /* Ensure the button does not overflow */
 }
 
 .admin-container {
