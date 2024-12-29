@@ -17,7 +17,7 @@ const ReadPlanPage: React.FC = () => {
         }
 
         try {
-            const response = await fetch(`http://127.0.0.1:5000/admin/plan/read_plan/${planId}`, {
+            const response = await fetch(`http://127.0.0.1:5000/admin/plan/read_plan/id/${planId}`, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${token}`,

@@ -61,7 +61,7 @@ const ReadPlanPage: React.FC = () => {
                     <table>
                         <thead>
                             <tr>
-                                <th>Name</th>
+                                <th>id</th>
                                 <th>Description</th>
                                 <th>Project Limit</th>
                                 <th>Task Limit per Project</th>
@@ -70,7 +70,7 @@ const ReadPlanPage: React.FC = () => {
                         </thead>
                         <tbody>
                             <tr>
-                                <td>{result.plan.name}</td>
+                                <td>{result.plan._id}</td>
                                 <td>{result.plan.description}</td>
                                 <td>{result.plan.project_limit}</td>
                                 <td>{result.plan.task_limit_per_project}</td>
