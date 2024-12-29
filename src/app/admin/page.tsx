@@ -7,6 +7,8 @@ import PlanCreatePage from './plan/create/page'; // Import the PlanCreatePage co
 import AllPlansPage from './plan/read/read_all/page'; // Import the PlansPage component
 import PlanReadPage from './plan/read/read_by_id/page'; // Import the PlanReadPage component
 import ReadPlanPage from './plan/read/read_by_name/page'; // Import the ReadPlanPage component
+import UpdatePlanByIdPage from './plan/update/update_by_id/page'; // Import the UpdatePlanByIdPage component
+import UpdatePlanByNamePage from './plan/update/update_by_name/page'; // Import the UpdatePlanByNamePage component
 
 const Sidebar = () => {
     const [isOpen, setIsOpen] = useState(true);
@@ -29,8 +31,13 @@ const Sidebar = () => {
         setActiveMenu('read');
     };
 
+    const toggleUpdateMenu = () => {
+        setSelectedForm(null);
+        setActiveMenu('update');
+    };
+
     const goBack = () => {
-        if (activeMenu === 'read') {
+        if (activeMenu === 'read' || activeMenu === 'update') {
             setActiveMenu('plan');
         } else {
             setActiveMenu(null);
@@ -49,8 +56,10 @@ const Sidebar = () => {
                 return <PlanReadPage />;
             case 'readByName':
                 return <ReadPlanPage />;
-            case 'update':
-                return <div>Update Form</div>;
+            case 'updateById':
+                return <UpdatePlanByIdPage />;
+            case 'updateByName':
+                return <UpdatePlanByNamePage />;
             case 'delete':
                 return <div>Delete Form</div>;
             default:
@@ -91,7 +100,7 @@ const Sidebar = () => {
                                         {isOpen ? 'Read' : <FaEye style={{ color: 'var(--background)', margin: '0 auto', display: 'block' }} />}
                                     </Link>
                                 </li>
-                                <li onClick={() => setSelectedForm('update')}>
+                                <li onClick={toggleUpdateMenu}>
                                     <Link href="#">
                                         {isOpen ? 'Update' : <FaEdit style={{ color: 'var(--background)', margin: '0 auto', display: 'block' }} />}
                                     </Link>
@@ -123,6 +132,25 @@ const Sidebar = () => {
                                 <li onClick={() => setSelectedForm('readByName')}>
                                     <Link href="#">
                                         {isOpen ? 'Read by Name' : <FaEye style={{ color: 'var(--background)', margin: '0 auto', display: 'block' }} />}
+                                    </Link>
+                                </li>
+                            </ul>
+                        </>
+                    ) : activeMenu === 'update' ? (
+                        <>
+                            <li className="back-button" onClick={goBack}>
+                                <FaArrowLeft style={{ color: 'var(--background)', margin: '0 auto', display: 'block' }} />
+                                {isOpen && 'Back'}
+                            </li>
+                            <ul className="sub-menu">
+                                <li onClick={() => setSelectedForm('updateById')}>
+                                    <Link href="#">
+                                        {isOpen ? 'Update by ID' : <FaEdit style={{ color: 'var(--background)', margin: '0 auto', display: 'block' }} />}
+                                    </Link>
+                                </li>
+                                <li onClick={() => setSelectedForm('updateByName')}>
+                                    <Link href="#">
+                                        {isOpen ? 'Update by Name' : <FaEdit style={{ color: 'var(--background)', margin: '0 auto', display: 'block' }} />}
                                     </Link>
                                 </li>
                             </ul>
