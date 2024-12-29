@@ -56,6 +56,7 @@ export default function Login() {
                 const data = await response.json();
                 setSuccess("Login successful! Redirecting to dashboard...");
                 localStorage.setItem("Token", data.token);
+                localStorage.setItem("is_admin", data.is_admin); // Save is_admin to local storage
                 setFormData({ email: "", password: "" });
 
                 setRedirecting(true);
