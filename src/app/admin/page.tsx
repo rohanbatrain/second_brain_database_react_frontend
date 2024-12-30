@@ -1,5 +1,5 @@
 "use client"
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { FaPlus, FaEye, FaEdit, FaTrash, FaBars, FaArrowLeft, FaMoneyBill } from 'react-icons/fa';
 import './sidebar.css'; // Make sure to create and style this CSS file
@@ -16,6 +16,29 @@ const Sidebar = () => {
     const [selectedForm, setSelectedForm] = useState<string | null>(null);
     const [activeSubMenu, setActiveSubMenu] = useState<string | null>(null);
     const sidebarRef = useRef(null);
+    const [isLandscape, setIsLandscape] = useState(window.innerWidth > window.innerHeight);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsLandscape(window.innerWidth > window.innerHeight);
+        };
+
+        window.addEventListener('resize', handleResize);
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
+    if (!isLandscape) {
+        return (
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', textAlign: 'center', padding: '20px' }}>
+                <div style={{ animation: 'fadeIn 1s ease-in-out', background: 'white', padding: '20px', borderRadius: '10px', boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)', color: 'black' }}>
+                    <h1>Please Rotate Your Device</h1>
+                    <p>This application is best viewed in landscape mode. Please rotate your device to continue.</p>
+                </div>
+            </div>
+        );
+    }
 
     const toggleSidebar = () => {
         setIsOpen(!isOpen);

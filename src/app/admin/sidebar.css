@@ -11,10 +11,14 @@
     transition: width 0.3s;
     overflow: hidden;
     font-family: var(--font-family);
+    overflow-y: auto;
 }
 
 .sidebar.closed {
     width: 80px;
+    padding-top: 60px; /* Add padding to avoid overlap with the toggle button */
+    padding-left: 10px; /* Add padding to align content */
+    padding-right: 10px; /* Add padding to align content */
 }
 
 .sidebar h2 {
@@ -42,7 +46,8 @@
 
 .sidebar.closed ul li {
     padding-top: 25px;
-    /* padding-left: 20px; Adjust padding for closed sidebar */
+    padding-left: 10px; /* Adjust padding for closed sidebar */
+    padding-right: 10px; /* Adjust padding for closed sidebar */
 }
 
 .sidebar ul li a {
@@ -188,5 +193,14 @@
     .sidebar ul li a {
         font-size: 1em;
         padding: 8px;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
     }
 }
