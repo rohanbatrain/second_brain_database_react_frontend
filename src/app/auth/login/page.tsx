@@ -43,7 +43,8 @@ export default function Login() {
         }
 
         try {
-            const response = await fetch("http://127.0.0.1:5000/auth/login", {
+            const backendApi = localStorage.getItem("backend_api");
+            const response = await fetch(`${backendApi}/auth/login`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -56,7 +57,7 @@ export default function Login() {
                 const data = await response.json();
                 setSuccess("Login successful! Redirecting to dashboard...");
                 localStorage.setItem("Token", data.token);
-                localStorage.setItem("is_admin", data.is_admin); // Save is_admin to local storage
+                localStorage.setItem("role", data.role); // Save role to local storage
                 setFormData({ email: "", password: "" });
 
                 setRedirecting(true);
