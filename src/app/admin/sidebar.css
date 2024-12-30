@@ -1,10 +1,10 @@
 .sidebar {
     width: 250px;
     height: 100vh;
-    background-color: var(--foreground);
+    background: linear-gradient(135deg, #2c3e50, #34495e); /* Gradient background for a modern look */
     padding: 20px;
     box-shadow: 2px 0 5px rgba(0,0,0,0.1);
-    color: var(--background);
+    color: #ecf0f1; /* Lighter text color */
     position: fixed;
     top: 0;
     left: 0;
@@ -12,6 +12,7 @@
     overflow: hidden;
     font-family: var(--font-family);
     overflow-y: auto;
+    border-right: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
 }
 
 .sidebar.closed {
@@ -52,13 +53,15 @@
 
 .sidebar ul li a {
     text-decoration: none;
-    color: var(--background);
-    font-size: 1.2em;
+    color: #ecf0f1; /* Lighter text color */
+    font-size: 0.8em; /* Further reduced font size */
     display: block;
-    padding: 10px;
+    padding: 4px; /* Further reduced padding */
     border-radius: var(--border-radius);
-    transition: background-color 0.3s, color 0.3s;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
     flex-grow: 1;
+    background: rgba(255, 255, 255, 0.1); /* Transparent background for items */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
 
 .sidebar ul li a .icon {
@@ -73,19 +76,27 @@
 }
 
 .sidebar ul li a:hover {
-    background-color: var(--primary-color);
-    color: var(--foreground);
+    background-color: #1abc9c; /* Change background on hover */
+    color: #ffffff; /* Change text color on hover */
+    transform: translateX(5px); /* Slightly move the item to the right on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
 }
 
 /* Styles for parent menu item */
 .sidebar ul li .parent-menu {
     font-weight: bold;
     cursor: pointer;
+    background: rgba(255, 255, 255, 0.1); /* Transparent background for parent menu */
+    padding: 6px; /* Add padding for better spacing */
+    border-radius: 4px; /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
 
 .sidebar ul li .parent-menu:hover {
     background-color: var(--primary-color);
     color: var(--foreground);
+    transform: translateX(5px); /* Slightly move the item to the right on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
 }
 
 /* Styles for sub-menu items */
@@ -100,8 +111,18 @@
 }
 
 .sidebar ul li .sub-menu li a {
-    font-size: 1em;
-    padding: 8px;
+    font-size: 0.7em; /* Further reduced font size for sub-menu items */
+    padding: 2px; /* Further reduced padding for sub-menu items */
+    background: rgba(255, 255, 255, 0.1); /* Transparent background for sub-menu items */
+    border-radius: 4px; /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.sidebar ul li .sub-menu li a:hover {
+    background-color: #16a085; /* Change background on hover */
+    color: #ffffff; /* Change text color on hover */
+    transform: translateX(5px); /* Slightly move the item to the right on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
 }
 
 /* Show sub-menu when parent menu is active */
@@ -131,7 +152,7 @@
     position: fixed;
     top: 20px;
     left: 20px;
-    background-color: var(--foreground);
+    background-color: #1abc9c; /* Match the hover color of items */
     color: var(--background);
     border: none;
     padding: 10px;
@@ -140,6 +161,14 @@
     border-radius: var(--border-radius);
     width: auto; /* Ensure the button does not overflow */
     height: auto; /* Ensure the button does not overflow */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.toggle-button:hover {
+    background-color: #16a085; /* Change background on hover */
+    transform: rotate(90deg); /* Rotate the button on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
 }
 
 .admin-container {

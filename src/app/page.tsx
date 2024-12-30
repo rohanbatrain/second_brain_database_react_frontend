@@ -12,7 +12,7 @@ export default function Home() {
       <img
         src="/images/brain_unsplash.jpg"
         alt="Brain"
-        className="absolute inset-0 w-full h-full object-cover opacity-50"
+        className="absolute inset-0 w-full h-full object-cover opacity-100"
       />
       <div className="relative z-10">
 
