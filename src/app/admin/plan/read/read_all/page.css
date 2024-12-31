@@ -29,8 +29,7 @@ div {
 
 .plans-page {
     padding: 20px;
-    font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
+    font-family: 'Roboto', sans-serif;
 }
 
 .title {
@@ -38,10 +37,11 @@ div {
     margin-bottom: 20px;
     color: #333;
     text-align: center;
+    font-weight: 700;
 }
 
 .error {
-    color: red;
+    color: #ff4d4f;
     font-size: 1.2em;
     text-align: center;
     margin-bottom: 20px;
@@ -57,26 +57,28 @@ div {
 
 .plan-card {
     background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    width: 300px;
-    transition: transform 0.2s;
+    width: 320px;
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .plan-card:hover {
     transform: translateY(-10px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
 }
 
 .plan-name {
-    font-size: 1.5em;
+    font-size: 1.8em;
     margin-bottom: 10px;
     color: #333;
+    font-weight: 600;
 }
 
 .plan-id {
     font-size: 0.9em;
-    color: #777;
+    color: #888;
     margin-bottom: 10px;
 }
 

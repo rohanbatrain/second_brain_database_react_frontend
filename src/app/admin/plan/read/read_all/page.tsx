@@ -47,25 +47,25 @@ const AllPlansPage: React.FC = () => {
     }, []);
 
     return (
-        <div className="plans-container">
+        <div className="plans-page">
+            <h1 className="title">All Plans</h1>
             {error && <p className="error">{error}</p>}
-            {plans.map(plan => (
-                <div key={plan._id} className="plan-card">
-                    <h2 className="plan-name">{plan.name}</h2>
-                    <p className="plan-id">ID: {plan._id}</p>
-                    <p className="plan-description">{plan.description}</p>
-                    <div className="plan-limits">
-                        <p>Project Limit: {plan.project_limit}</p>
-                        <p>Task Limit per Project: {plan.task_limit_per_project}</p>
-                        <p>Team Limit: {plan.team_limit}</p>
+            <div className="plans-container">
+                {plans.map(plan => (
+                    <div key={plan._id} className="plan-card">
+                        <h2 className="plan-name">{plan.name}</h2>
+                        <p className="plan-id">ID: {plan._id}</p>
+                        <p className="plan-description">{plan.description}</p>
+                        <div className="plan-limits">
+                            <p>Project Limit: {plan.project_limit}</p>
+                            <p>Task Limit per Project: {plan.task_limit_per_project}</p>
+                            <p>Team Limit: {plan.team_limit}</p>
+                        </div>
                     </div>
-                </div>
-            ))}
+                ))}
+            </div>
         </div>
     );
 };
-
-
-
 
 export default AllPlansPage;

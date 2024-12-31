@@ -7,6 +7,7 @@ export default function Register() {
     username: "",
     email: "",
     password: "",
+    client: "react_frontend", // Added client field
   });
 
   const [error, setError] = useState("");
@@ -48,19 +49,26 @@ export default function Register() {
       return;
     }
 
+    const backendApi = localStorage.getItem("backend_api");
+    if (!backendApi) {
+      setError("Backend API URL is not set.");
+      router.push("/setup"); // Redirect to the setup page
+      return;
+    }
+
     try {
-      const response = await fetch("http://127.0.0.1:5000/auth/register", {
+      const response = await fetch(`${backendApi}/auth/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           "X-Requested-With": "XMLHttpRequest",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(formData), // client field included in formData
       });
 
       if (response.ok) {
         setSuccess("Registration successful! Redirecting to login page...");
-        setFormData({ username: "", email: "", password: "" });
+        setFormData({ username: "", email: "", password: "", client: "react_frontend" });
 
         // Start the countdown for redirection
         setRedirecting(true);
