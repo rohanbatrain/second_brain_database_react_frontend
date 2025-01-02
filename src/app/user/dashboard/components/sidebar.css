@@ -4,7 +4,7 @@
     padding: 25px; /* Increased padding for better spacing */
     border-right: 1px solid #dcdcdc; /* Add a subtle border for better separation */
     height: 100vh;
-    color: #2c3e50; /* Light mode text color */
+    color: #000000; /* Light mode text color */
     transition: width 0.3s, background-color 0.3s, color 0.3s;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
     overflow: hidden; /* Ensure content doesn't overflow */
@@ -59,9 +59,20 @@
     border-bottom: 1px solid #dcdcdc; /* Add a subtle border for better separation */
 }
 
+.sidebar-logo {
+    text-align: center;
+    margin-bottom: 20px; /* Add space below the logo */
+}
+
+.logo {
+    max-width: 100%;
+    height: auto;
+    padding: 10px 0; /* Add padding for better spacing */
+}
+
 .collapse-icon {
     cursor: pointer;
-    color: #ecf0f1;
+    color: #000000; /* Light mode icon color */
     margin-right: 10px; /* Add space between icons */
 }
 
@@ -69,7 +80,7 @@
     background: none;
     border: none;
     cursor: pointer;
-    color: #ecf0f1;
+    color: #000000; /* Light mode icon color */
     font-size: 1.2em;
     margin-left: 10px; /* Add space between icons */
 }
@@ -101,7 +112,7 @@
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s;
     border-radius: 4px;
-    color: #2c3e50; /* Light mode text color */
+    color: #000000; /* Light mode text color */
     font-size: 1em; /* Consistent font size */
     margin-bottom: 10px; /* Add space between items */
 }
@@ -114,14 +125,14 @@
 
 .sidebar-icon {
     margin-right: 10px;
-    color: #2c3e50; /* Light mode icon color */
+    color: #000000; /* Light mode icon color */
     font-size: 1.2em; /* Consistent icon size */
 }
 
 .sidebar-category {
     margin: 10px 0;
     font-weight: bold;
-    color: #bdc3c7;
+    color: #000000; /* Light mode category text color */
     font-size: 1.1em; /* Consistent category font size */
     padding-bottom: 5px; /* Add space below category */
     border-bottom: 1px solid #dcdcdc; /* Add a subtle border for better separation */
@@ -129,7 +140,7 @@
 
 .dark-mode .sidebar {
     background-color: #1e1e1e;
-    color: #ffffff;
+    color: #ffffff; /* Dark mode text color */
     border-right: 1px solid #444; /* Adjust border color for dark mode */
 }
 
@@ -149,6 +160,15 @@
 
 .dark-mode .sidebar-category {
     border-bottom: 1px solid #444; /* Adjust border color for dark mode */
+    color: #ffffff; /* Dark mode category text color */
+}
+
+.dark-mode .collapse-icon {
+    color: #ffffff; /* Dark mode icon color */
+}
+
+.dark-mode .toggle-dark-mode-icon {
+    color: #ffffff; /* Dark mode icon color */
 }
 
 .toggle-dark-mode {
