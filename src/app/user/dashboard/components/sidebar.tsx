@@ -20,6 +20,7 @@ const Sidebar: React.FC = () => {
     const [isSettingsOpen, setIsSettingsOpen] = useState<boolean>(false);
     const [activeSetting, setActiveSetting] = useState<string>('Appearance');
     const [searchQuery, setSearchQuery] = useState<string>('');
+    const [isBuyMeCoffeeEmbedded, setIsBuyMeCoffeeEmbedded] = useState<boolean>(false);
 
     useEffect(() => {
         const storedDarkMode = localStorage.getItem('dark_mode') === 'true';
@@ -58,7 +59,26 @@ const Sidebar: React.FC = () => {
         return isDarkMode ? logoDarkUrl : logoLightUrl;
     };
 
+    const handleBuyMeCoffeeClick = () => {
+        const viewport = document.querySelector('.settings-content-area');
+        if (viewport && viewport.innerHTML.trim() === '') {
+            setIsBuyMeCoffeeEmbedded(true);
+        } else {
+            window.open('https://buymeacoffee.com/rohanbatrain', '_blank', 'noopener,noreferrer');
+        }
+    };
+
     const renderSettingsContent = () => {
+        if (isBuyMeCoffeeEmbedded) {
+            return (
+                <iframe
+                    src="https://buymeacoffee.com/rohanbatrain"
+                    style={{ width: '100%', height: '100%', border: 'none' }}
+                    title="Buy Me a Coffee"
+                ></iframe>
+            );
+        }
+
         switch (activeSetting) {
             case 'Appearance':
                 return (
@@ -92,8 +112,38 @@ const Sidebar: React.FC = () => {
                 return (
                     <div className="settings-content">
                         <h2 className="settings-category-heading">Upgrade Your Plan</h2>
-                        <p>Upgrade to a premium plan for more features.</p>
-                        {/* Add more content for Upgrade Your Plan here */}
+                        <div className="plan-tiles">
+                            <div className="plan-tile">
+                                <h3>Free</h3>
+                                <p className="price">$0/month</p>
+                                <ul>
+                                    <li>Feature 1</li>
+                                    <li>Feature 2</li>
+                                    <li>Feature 3</li>
+                                </ul>
+                                <p>Currently</p>
+                            </div>
+                            <div className="plan-tile coming-soon">
+                                <h3>Basic</h3>
+                                <p className="price">$10/month</p>
+                                <ul>
+                                    <li>Feature 1</li>
+                                    <li>Feature 2</li>
+                                    <li>Feature 3</li>
+                                </ul>
+                                <p>Coming Soon</p>
+                            </div>
+                            <div className="plan-tile coming-soon">
+                                <h3>Premium</h3>
+                                <p className="price">$20/month</p>
+                                <ul>
+                                    <li>Feature 1</li>
+                                    <li>Feature 2</li>
+                                    <li>Feature 3</li>
+                                </ul>
+                                <p>Coming Soon</p>
+                            </div>
+                        </div>
                     </div>
                 );
             // Add more cases for other settings here
@@ -102,7 +152,7 @@ const Sidebar: React.FC = () => {
         }
     };
 
-    const filteredSettings = ['Appearance', 'Activity Log', 'Upgrade Your Plan', 'New'].filter(setting =>
+    const filteredSettings = ['Appearance', 'Activity Log', 'Upgrade Your Plan', 'Account'].filter(setting =>
         setting.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
@@ -157,10 +207,8 @@ const Sidebar: React.FC = () => {
                         <div className="profile-menu">
                             <ul>
                                 <li onClick={openSettings}><FaCog className="menu-icon" /> Settings</li>
-                                <li>
-                                    <a href="https://buymeacoffee.com/rohanbatrain" target="_blank" rel="noopener noreferrer" className="buy-me-coffee">
-                                        <FaCoffee className="menu-icon" /> <span>Buy Me a Coffee</span>
-                                    </a>
+                                <li onClick={handleBuyMeCoffeeClick}>
+                                    <FaCoffee className="menu-icon" /> <span>Buy Me a Coffee</span>
                                 </li>
                             </ul>
                         </div>

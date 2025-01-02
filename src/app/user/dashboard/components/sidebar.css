@@ -331,6 +331,9 @@
     flex-direction: column;
     border-radius: 10px; /* Rounded corners */
     overflow: hidden; /* Ensure content doesn't overflow */
+    resize: both; /* Make the popup resizable */
+    min-width: 300px; /* Set a minimum width */
+    min-height: 300px; /* Set a minimum height */
 }
 
 @media (max-width: 768px) {
@@ -535,4 +538,79 @@ input:checked + .slider:before {
     align-items: center;
     text-decoration: none;
     color: inherit;
+}
+
+/* New styles for plan tiles */
+.plan-tiles {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+    gap: 20px; /* Add gap between tiles */
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+.plan-tile {
+    background-color: #ffffff;
+    border: 1px solid #dcdcdc;
+    border-radius: 15px;
+    padding: 30px;
+    width: 30%;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+    transition: transform 0.3s, box-shadow 0.3s; /* Add transition for hover effect */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.plan-tile:hover {
+    transform: translateY(-10px); /* Lift the tile on hover */
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2); /* Enhance shadow on hover */
+}
+
+.plan-tile h3 {
+    margin-top: 0;
+    font-size: 2em;
+    color: #333;
+}
+
+.plan-tile .price {
+    font-size: 1em;
+    color: #27ae60;
+    margin: 20px 0;
+}
+
+.plan-tile ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: left; /* Align features to the left */
+    width: 100%; /* Ensure full width */
+}
+
+.plan-tile li {
+    margin-bottom: 10px;
+    font-size: 1.1em;
+    color: #555;
+    padding-left: 25px; /* Add padding for better alignment */
+    position: relative;
+}
+
+.plan-tile li::before {
+    content: '✔'; /* Add checkmark before each feature */
+    position: absolute;
+    left: 0;
+    color: #27ae60; /* Green color for checkmark */
+    font-size: 1.2em;
+}
+
+.plan-tile p {
+    font-size: 1.2em;
+    color: #888;
+    margin-top: auto; /* Push to the bottom */
+}
+
+.coming-soon {
+    opacity: 0.7;
+    background-color: #f0f0f0;
 }
