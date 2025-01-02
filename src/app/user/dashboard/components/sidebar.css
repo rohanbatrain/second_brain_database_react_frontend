@@ -8,6 +8,10 @@
     transition: width 0.3s, background-color 0.3s, color 0.3s;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
     overflow: hidden; /* Ensure content doesn't overflow */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow-y: auto; /* Add vertical scroll if content overflows */
 }
 
 @media (max-width: 768px) {
@@ -46,6 +50,11 @@
 
 .sidebar.collapsed .sidebar-item {
     justify-content: center; /* Center items */
+}
+
+.sidebar.collapsed .profile-name,
+.sidebar.collapsed .placeholder {
+    display: none;
 }
 
 .sidebar-header {
@@ -103,6 +112,7 @@
 .sidebar-menu {
     list-style: none;
     padding: 0;
+    flex-grow: 1;
 }
 
 .sidebar-item {
@@ -119,7 +129,7 @@
 
 .sidebar-item:hover {
     background-color: #ecf0f1; /* Light mode hover background color */
-    color: #2c3e50; /* Ensure text color remains consistent */
+    color: #000000; /* Ensure text color remains consistent */
     border: 1px solid #dcdcdc; /* Add a subtle border on hover */
 }
 
@@ -207,4 +217,322 @@
 
 .dark-mode .sidebar-footer::after {
     content: "";
+}
+
+.sidebar-profile {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-top: 1px solid #dcdcdc; /* Add a subtle border for better separation */
+    width: 100%; /* Ensure it fits within the sidebar */
+    justify-content: space-between;
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    background-color: inherit; /* Match the sidebar background color */
+    position: relative; /* Change from sticky to relative */
+}
+
+.profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.profile-name {
+    margin-left: 10px;
+    font-size: 1em;
+    color: #000000; /* Light mode text color */
+}
+
+.profile-menu-icon {
+    margin-left: auto;
+    cursor: pointer;
+    color: #000000; /* Light mode icon color */
+}
+
+.dark-mode .profile-name {
+    color: #ffffff; /* Dark mode text color */
+}
+
+.dark-mode .profile-menu-icon {
+    color: #ffffff; /* Dark mode icon color */
+}
+
+.placeholder {
+    color: #bdc3c7; /* Light mode placeholder text color */
+    font-style: italic;
+    text-align: center;
+    padding: 10px;
+}
+
+.dark-mode .placeholder {
+    color: #7f8c8d; /* Dark mode placeholder text color */
+}
+
+.hidden {
+    display: none;
+}
+
+.profile-menu {
+    position: absolute;
+    bottom: 60px; /* Position above the profile section */
+    left: 0;
+    width: 100%;
+    background-color: #ffffff; /* Light mode background color */
+    border: 1px solid #dcdcdc; /* Add a subtle border */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.profile-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.profile-menu li {
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.profile-menu li:hover {
+    background-color: #ecf0f1; /* Light mode hover background color */
+}
+
+.menu-icon {
+    margin-right: 10px;
+}
+
+.dark-mode .profile-menu {
+    background-color: #1e1e1e; /* Dark mode background color */
+    border: 1px solid #444; /* Adjust border color for dark mode */
+}
+
+.dark-mode .profile-menu li:hover {
+    background-color: #333333; /* Dark mode hover background color */
+}
+
+.dark-mode .menu-icon {
+    color: #ffffff; /* Dark mode icon color */
+}
+.settings-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 80%;
+    background-color: #ffffff; /* Light mode background color */
+    border: 1px solid #dcdcdc; /* Add a subtle border */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px; /* Rounded corners */
+    overflow: hidden; /* Ensure content doesn't overflow */
+}
+
+@media (max-width: 768px) {
+    .settings-popup {
+        width: 95%;
+        height: 90%;
+    }
+}
+
+@media (max-width: 480px) {
+    .settings-popup {
+        width: 100%;
+        height: 100%;
+        border-radius: 0; /* Remove rounded corners for small screens */
+    }
+}
+
+.settings-header {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+    border-bottom: 1px solid #dcdcdc; /* Add a subtle border */
+    background-color: #f7f7f7; /* Light mode header background color */
+}
+
+.close-icon {
+    cursor: pointer;
+    color: #000000; /* Light mode icon color */
+    font-size: 1.5em;
+}
+
+.settings-container {
+    display: flex;
+    flex: 1; /* Fill remaining space after header */
+    height: 100%; /* Ensure full height for flex container */
+}
+
+.settings-sidebar {
+    width: 25%; /* Adjust width for the sidebar */
+    background-color: #f7f7f7; /* Light mode sidebar background color */
+    border-right: 1px solid #dcdcdc; /* Add a subtle border */
+    padding: 20px;
+    overflow-y: auto; /* Add scroll for sidebar if content overflows */
+}
+
+.settings-sidebar h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+    color: #000000; /* Light mode text color */
+}
+
+.settings-search {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #dcdcdc; /* Add a subtle border */
+    border-radius: 4px;
+    font-size: 1em;
+    color: #000000; /* Light mode text color */
+}
+
+.settings-sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.settings-sidebar li {
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    color: #000000; /* Light mode text color */
+}
+
+.settings-sidebar li:hover {
+    background-color: #ecf0f1; /* Light mode hover background color */
+}
+
+.settings-content {
+    flex: 1; /* Take remaining space */
+    padding: 20px;
+    overflow-y: auto; /* Add vertical scroll if content overflows */
+    background-color: #ffffff; /* Light mode content background color */
+    color: #000000; /* Light mode text color */
+}
+
+.visual-option {
+    margin-top: 20px;
+}
+
+.dark-mode .settings-popup {
+    background-color: #1e1e1e; /* Dark mode background color */
+    border: 1px solid #444; /* Adjust border color for dark mode */
+}
+
+.dark-mode .settings-header {
+    border-bottom: 1px solid #444; /* Adjust border color for dark mode */
+    background-color: #1e1e1e; /* Dark mode header background color */
+}
+
+.dark-mode .close-icon {
+    color: #ffffff; /* Dark mode icon color */
+}
+
+.dark-mode .settings-container {
+    background-color: #1e1e1e; /* Dark mode container background color */
+}
+
+.dark-mode .settings-sidebar {
+    background-color: #1e1e1e; /* Dark mode sidebar background color */
+    border-right: 1px solid #444; /* Adjust border color for dark mode */
+}
+
+.dark-mode .settings-sidebar h2 {
+    color: #ffffff; /* Dark mode text color */
+}
+
+.dark-mode .settings-search {
+    background-color: #34495e; /* Dark mode search bar background color */
+    color: #ffffff; /* Dark mode text color */
+    border: 1px solid #444; /* Adjust border color for dark mode */
+}
+
+.dark-mode .settings-sidebar li {
+    color: #ffffff; /* Dark mode text color */
+}
+
+.dark-mode .settings-sidebar li:hover {
+    background-color: #34495e; /* Dark mode hover background color */
+}
+
+.dark-mode .settings-content {
+    color: #ffffff; /* Dark mode text color */
+    background-color: #1e1e1e; /* Dark mode content background color */
+}
+
+/* New styles for settings content */
+.settings-category-heading {
+    font-size: 1.8em;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.settings-option {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-right: 20px; /* Add padding to create distance between text and toggle */
+}
+
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+    margin-left: 200px; /* Add margin to create distance */
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 20px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 14px;
+    width: 14px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:checked + .slider:before {
+    transform: translateX(20px);
+}
+
+/* New styles for Buy Me a Coffee link */
+.buy-me-coffee {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
 }
