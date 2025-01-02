@@ -86,13 +86,7 @@
 }
 
 .team-select {
-    width: calc(100% - 30px);
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #34495e;
-    border-radius: 4px;
-    background-color: #34495e;
-    color: #ecf0f1;
+    display: none;
 }
 
 .sidebar-menu {
@@ -180,17 +174,11 @@
 }
 
 .team-child-select {
-    margin-left: 10px;
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    background-color: #fff;
-    color: #000;
+    display: none;
 }
 
 .dark-mode .team-child-select {
-    background-color: #333;
-    color: #fff;
+    display: none;
 }
 
 .sidebar-footer::after {
