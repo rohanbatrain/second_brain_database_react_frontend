@@ -70,7 +70,7 @@ export default function Register() {
         setSuccess("Registration successful! Redirecting to login page...");
         setFormData({ username: "", email: "", password: "", client: "react_frontend" });
 
-        // Start the countdown for redirection
+        // Start the countdown for redirection 
         setRedirecting(true);
       } else {
         const data = await response.json();

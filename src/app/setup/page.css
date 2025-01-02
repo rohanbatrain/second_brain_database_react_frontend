@@ -33,6 +33,12 @@
     overflow: auto;
 }
 
+.large-card {
+    width: 80%;
+    max-width: 800px;
+    padding: 20px;
+}
+
 h1 {
     margin-bottom: 20px;
     font-size: 24px;
@@ -93,4 +99,28 @@ p {
 
 .edit-button:hover {
     background-color: #218838;
+}
+
+.dark-mode .page-background {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+.dark-mode .card {
+    background-color: #1e1e1e;
+}
+
+.toggle-dark-mode {
+    background-color: #6200ea;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-bottom: 20px;
+}
+
+.toggle-dark-mode:hover {
+    background-color: #3700b3;
 }

@@ -5,6 +5,7 @@ import './page.css'; // Import the CSS file
 const SetupPage: React.FC = () => {
     const [apiUrl, setApiUrl] = useState<string>('');
     const [isApiSet, setIsApiSet] = useState<boolean>(false);
+    const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
 
     useEffect(() => {
         const storedApiUrl = localStorage.getItem('backend_api');
@@ -12,7 +13,13 @@ const SetupPage: React.FC = () => {
             setApiUrl(storedApiUrl);
             setIsApiSet(true);
         }
+        const storedDarkMode = localStorage.getItem('dark_mode') === 'true';
+        setIsDarkMode(storedDarkMode);
     }, []);
+
+    useEffect(() => {
+        document.body.className = isDarkMode ? 'dark-mode' : '';
+    }, [isDarkMode]);
 
     const sanitizeUrl = (url: string) => {
         // Remove trailing slash if present
@@ -30,9 +37,17 @@ const SetupPage: React.FC = () => {
         setIsApiSet(false);
     };
 
+    const toggleDarkMode = () => {
+        setIsDarkMode(!isDarkMode);
+        localStorage.setItem('dark_mode', (!isDarkMode).toString());
+    };
+
     return (
-        <div className="page-background">
-            <div className="card">
+        <div className={`page-background ${isDarkMode ? 'dark-mode' : ''}`}>
+            <div className="card large-card">
+                <button onClick={toggleDarkMode} className="toggle-dark-mode">
+                    {isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+                </button>
                 {isApiSet ? (
                     <div>
                         <h1>API URL</h1>

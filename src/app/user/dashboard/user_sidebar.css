@@ -1,0 +1,202 @@
+.sidebar {
+    width: 250px;
+    background-color: #ffffff; /* Light mode background color */
+    padding: 25px; /* Increased padding for better spacing */
+    border-right: 1px solid #dcdcdc; /* Add a subtle border for better separation */
+    height: 100vh;
+    color: #2c3e50; /* Light mode text color */
+    transition: width 0.3s, background-color 0.3s, color 0.3s;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* Ensure content doesn't overflow */
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        padding: 15px; /* Adjust padding for smaller screens */
+    }
+    .sidebar.collapsed {
+        width: 100%;
+    }
+}
+
+.sidebar.collapsed {
+    width: 60px;
+    padding: 15px 10px; /* Adjust padding for better alignment */
+    border-right: 1px solid #dcdcdc; /* Add a subtle border for better separation */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sidebar.collapsed .sidebar-text {
+    display: none;
+}
+
+.sidebar.collapsed .sidebar-footer {
+    display: flex;
+    justify-content: center;
+}
+
+.sidebar.collapsed .sidebar-icon {
+    margin-right: 0; /* Remove margin for icons */
+}
+
+.sidebar.collapsed .sidebar-item {
+    justify-content: center; /* Center items */
+}
+
+.sidebar-header {
+    text-align: center;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 25px; /* Add more space at the top */
+    padding-bottom: 15px; /* Add space at the bottom */
+    border-bottom: 1px solid #dcdcdc; /* Add a subtle border for better separation */
+}
+
+.collapse-icon {
+    cursor: pointer;
+    color: #ecf0f1;
+    margin-right: 10px; /* Add space between icons */
+}
+
+.toggle-dark-mode-icon {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #ecf0f1;
+    font-size: 1.2em;
+    margin-left: 10px; /* Add space between icons */
+}
+
+.sidebar-footer {
+    position: absolute; /* Ensure it's at the bottom of the sidebar */
+    bottom: 20px; /* Adjusted to ensure it's inside the sidebar */
+    width: calc(100% - 40px); /* Adjust width to fit inside padding */
+    display: flex;
+    justify-content: center;
+    padding: 15px 0; /* Adjust padding for better spacing */
+    left: 0; /* Ensure it stays within the sidebar */
+    border-top: 1px solid #dcdcdc; /* Add a subtle border for better separation */
+}
+
+.team-select {
+    width: calc(100% - 30px);
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #34495e;
+    border-radius: 4px;
+    background-color: #34495e;
+    color: #ecf0f1;
+}
+
+.sidebar-menu {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar-item {
+    display: flex;
+    align-items: center;
+    padding: 12px; /* Increase padding for better spacing */
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    border-radius: 4px;
+    color: #2c3e50; /* Light mode text color */
+    font-size: 1em; /* Consistent font size */
+    margin-bottom: 10px; /* Add space between items */
+}
+
+.sidebar-item:hover {
+    background-color: #ecf0f1; /* Light mode hover background color */
+    color: #2c3e50; /* Ensure text color remains consistent */
+    border: 1px solid #dcdcdc; /* Add a subtle border on hover */
+}
+
+.sidebar-icon {
+    margin-right: 10px;
+    color: #2c3e50; /* Light mode icon color */
+    font-size: 1.2em; /* Consistent icon size */
+}
+
+.sidebar-category {
+    margin: 10px 0;
+    font-weight: bold;
+    color: #bdc3c7;
+    font-size: 1.1em; /* Consistent category font size */
+    padding-bottom: 5px; /* Add space below category */
+    border-bottom: 1px solid #dcdcdc; /* Add a subtle border for better separation */
+}
+
+.dark-mode .sidebar {
+    background-color: #1e1e1e;
+    color: #ffffff;
+    border-right: 1px solid #444; /* Adjust border color for dark mode */
+}
+
+.dark-mode .sidebar-item {
+    color: #ffffff; /* Dark mode text color */
+}
+
+.dark-mode .sidebar-item:hover {
+    background-color: #333333; /* Dark mode hover background color */
+    color: #ffffff; /* Ensure text color remains consistent */
+    border: 1px solid #444; /* Adjust border color for dark mode */
+}
+
+.dark-mode .sidebar-icon {
+    color: #ffffff; /* Dark mode icon color */
+}
+
+.dark-mode .sidebar-category {
+    border-bottom: 1px solid #444; /* Adjust border color for dark mode */
+}
+
+.toggle-dark-mode {
+    background-color: #e74c3c;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.toggle-dark-mode:hover {
+    background-color: #c0392b;
+}
+
+.toggle-dark-mode.active {
+    background-color: #27ae60;
+}
+
+.toggle-dark-mode.active:hover {
+    background-color: #2ecc71;
+}
+
+.team-child-select {
+    margin-left: 10px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    color: #000;
+}
+
+.dark-mode .team-child-select {
+    background-color: #333;
+    color: #fff;
+}
+
+.sidebar-footer::after {
+    content: "";
+}
+
+.dark-mode .sidebar-footer::after {
+    content: "";
+}
