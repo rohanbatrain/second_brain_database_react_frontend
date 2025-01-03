@@ -2,10 +2,10 @@
 import React, { useState, useEffect } from 'react';
 import { FaHome, FaBook, FaCalendarAlt, FaCog, FaBars, FaMoon, FaSun, FaTasks, FaProjectDiagram, FaPen, FaChevronUp, FaTimes, FaCoffee } from 'react-icons/fa';
 import './sidebar.css';
-import logoLight from './logo_light_tp.png'; // Import the light mode logo
-import logoDark from './logo_dark_tp.png'; // Import the dark mode logo
-import logoCollapsedLight from './mental-health.png'; // Import the collapsed light mode logo
-import logoCollapsedDark from './mental-health.png'; // Import the collapsed dark mode logo
+import logoLight from '../../../assets/logo_light.png'; // Import the light mode logo
+import logoDark from '../../../assets/logo_dark_tp.png'; // Import the dark mode logo
+import logoCollapsedLight from '../../../assets/mental-health.png'; // Import the collapsed light mode logo
+import logoCollapsedDark from '../../../assets/mental-health.png'; // Import the collapsed dark mode logo
 
 const logoLightUrl: string = logoLight.src;
 const logoDarkUrl: string = logoDark.src;
