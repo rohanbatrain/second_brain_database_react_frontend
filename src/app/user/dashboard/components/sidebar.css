@@ -146,6 +146,15 @@
     font-size: 1.1em; /* Consistent category font size */
     padding-bottom: 5px; /* Add space below category */
     border-bottom: 1px solid #dcdcdc; /* Add a subtle border for better separation */
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Ensure space between text and icon */
+}
+
+.create-team-icon {
+    cursor: pointer;
+    font-size: 1em;
+    color: #000000; /* Light mode icon color */
 }
 
 .dark-mode .sidebar {
@@ -171,6 +180,10 @@
 .dark-mode .sidebar-category {
     border-bottom: 1px solid #444; /* Adjust border color for dark mode */
     color: #ffffff; /* Dark mode category text color */
+}
+
+.dark-mode .create-team-icon {
+    color: #ffffff; /* Dark mode icon color */
 }
 
 .dark-mode .collapse-icon {
@@ -613,4 +626,93 @@ input:checked + .slider:before {
 .coming-soon {
     opacity: 0.7;
     background-color: #f0f0f0;
+}
+
+/* New styles for Create New Team popup */
+.create-team-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.create-team-container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 400px;
+    max-width: 90%;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: relative; /* Ensure the close button is positioned relative to the card */
+    color: #000000; /* Light mode text color */
+}
+
+.create-team-header {
+    display: flex;
+    justify-content: flex-end;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.create-team-header .close-icon {
+    cursor: pointer;
+    font-size: 1.5rem;
+}
+
+.create-team-question {
+    margin-bottom: 20px;
+}
+
+.create-team-question label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.create-team-question input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.create-team-submit {
+    width: 100%;
+    padding: 10px;
+    background: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.create-team-submit:hover {
+    background: #0056b3;
+}
+
+.dark-mode .create-team-container {
+    background: #1e1e1e;
+    color: #ffffff; /* Dark mode text color */
+}
+
+.dark-mode .create-team-question input {
+    background: #333333;
+    color: #ffffff; /* Dark mode input text color */
+    border: 1px solid #444; /* Adjust border color for dark mode */
+}
+
+.dark-mode .create-team-submit {
+    background: #0056b3;
+}
+
+.dark-mode .create-team-submit:hover {
+    background: #003f7f;
 }

@@ -1,22 +1,23 @@
-"use client"
+"use client";
 import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
-import { FaPlus, FaEye, FaEdit, FaTrash, FaBars, FaArrowLeft, FaMoneyBill } from 'react-icons/fa';
+import { FaPlus, FaEye, FaEdit, FaTrash, FaBars, FaArrowLeft, FaMoneyBill, FaCog, FaMoon, FaSun } from 'react-icons/fa';
 import './sidebar.css'; // Make sure to create and style this CSS file
-import PlanCreatePage from '../plan/create/page'; // Import the PlanCreatePage component
-import AllPlansPage from '../plan/read/read_all/page'; // Import the PlansPage component
-import PlanReadPage from '../plan/read/read_by_id/page'; // Import the PlanReadPage component
-import ReadPlanPage from '../plan/read/read_by_name/page'; // Import the ReadPlanPage component
-import UpdatePlanByIdPage from '../plan/update/update_by_id/page'; // Import the UpdatePlanByIdPage component
-import UpdatePlanByNamePage from '../plan/update/update_by_name/page'; // Import the UpdatePlanByNamePage component
+import PlanCreatePage from '../plan/create/page';
+import AllPlansPage from '../plan/read/read_all/page';
+import PlanReadPage from '../plan/read/read_by_id/page';
+import ReadPlanPage from '../plan/read/read_by_name/page';
+import UpdatePlanByIdPage from '../plan/update/update_by_id/page';
+import UpdatePlanByNamePage from '../plan/update/update_by_name/page';
 
-const Sidebar = () => {
+const Sidebar: React.FC = () => {
     const [isOpen, setIsOpen] = useState(true);
     const [activeMenu, setActiveMenu] = useState<string | null>(null);
     const [selectedForm, setSelectedForm] = useState<string | null>(null);
     const [activeSubMenu, setActiveSubMenu] = useState<string | null>(null);
-    const sidebarRef = useRef(null);
+    const sidebarRef = useRef<HTMLDivElement | null>(null);
     const [isLandscape, setIsLandscape] = useState(false);
+    const [isDarkMode, setIsDarkMode] = useState(false);
 
     useEffect(() => {
         if (typeof window !== "undefined") {
@@ -29,6 +30,10 @@ const Sidebar = () => {
             return () => window.removeEventListener("resize", handleResize);
         }
     }, []);
+
+    useEffect(() => {
+        document.body.className = isDarkMode ? 'dark-mode' : '';
+    }, [isDarkMode]);
 
     if (!isLandscape) {
         return (
@@ -91,8 +96,12 @@ const Sidebar = () => {
         }
     };
 
+    const toggleDarkMode = () => {
+        setIsDarkMode(!isDarkMode);
+    };
+
     return (
-        <div className="admin-container">
+        <div className={`admin-container ${isDarkMode ? 'dark' : ''}`}>
             <button className="toggle-button" onClick={toggleSidebar}>
                 <FaBars style={{ color: 'var(--background)' }} />
             </button>
@@ -104,6 +113,11 @@ const Sidebar = () => {
                             <li className={`parent-menu ${activeMenu === 'plan' ? 'active' : ''}`} onClick={() => toggleSubMenu('plan')}>
                                 <Link href="#">
                                     {isOpen ? 'Plan' : <FaMoneyBill style={{ color: 'var(--background)', margin: '0 auto', display: 'block' }} />}
+                                </Link>
+                            </li>
+                            <li className={`parent-menu ${activeMenu === 'settings' ? 'active' : ''}`} onClick={() => toggleSubMenu('settings')}>
+                                <Link href="#">
+                                    {isOpen ? 'Settings' : <FaCog style={{ color: 'var(--background)', margin: '0 auto', display: 'block' }} />}
                                 </Link>
                             </li>
                         </>
@@ -175,6 +189,20 @@ const Sidebar = () => {
                                 <li onClick={() => setSelectedForm('updateByName')}>
                                     <Link href="#">
                                         {isOpen ? 'Update by Name' : <FaEdit style={{ color: 'var(--background)', margin: '0 auto', display: 'block' }} />}
+                                    </Link>
+                                </li>
+                            </ul>
+                        </>
+                    ) : activeMenu === 'settings' ? (
+                        <>
+                            <li className="back-button" onClick={goBack}>
+                                <FaArrowLeft style={{ color: 'var(--background)', margin: '0 auto', display: 'block' }} />
+                                {isOpen && 'Back'}
+                            </li>
+                            <ul className="sub-menu">
+                                <li onClick={toggleDarkMode}>
+                                    <Link href="#">
+                                        {isOpen ? (isDarkMode ? 'Light Mode' : 'Dark Mode') : (isDarkMode ? <FaSun style={{ color: 'var(--background)', margin: '0 auto', display: 'block' }} /> : <FaMoon style={{ color: 'var(--background)', margin: '0 auto', display: 'block' }} />)}
                                     </Link>
                                 </li>
                             </ul>

@@ -1,0 +1,147 @@
+.settings-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.5em;
+    transition: background-color 0.3s;
+}
+
+.settings-button:hover {
+    background-color: #0056b3;
+}
+
+.settings-popup {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 400px;
+    background-color: #ffffff;
+    border: 1px solid #dcdcdc;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    border-radius: 10px;
+    overflow: hidden;
+    resize: both;
+    overflow: auto;
+    cursor: grab;
+}
+
+.settings-popup:active {
+    cursor: grabbing;
+}
+
+.settings-header {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+    border-bottom: 1px solid #dcdcdc;
+    background-color: #f7f7f7;
+}
+
+.close-icon {
+    cursor: pointer;
+    color: #000000;
+    font-size: 1.5em;
+}
+
+.settings-content {
+    padding: 20px;
+    color: #000000; /* Set text color to pitch black in light mode */
+}
+
+.settings-category-heading {
+    font-size: 1.8em;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.settings-option {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 20px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 14px;
+    width: 14px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:checked + .slider:before {
+    transform: translateX(20px);
+}
+
+/* Dark mode styles */
+.dark-mode .settings-popup {
+    background-color: #1e1e1e;
+    border: 1px solid #444;
+}
+
+.dark-mode .settings-header {
+    border-bottom: 1px solid #444;
+    background-color: #1e1e1e;
+}
+
+.dark-mode .close-icon {
+    color: #ffffff;
+}
+
+.dark-mode .settings-content {
+    color: #ffffff;
+}
+
+.dark-mode .slider {
+    background-color: #444;
+}
+
+.dark-mode input:checked + .slider {
+    background-color: #2196F3;
+}

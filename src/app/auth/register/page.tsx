@@ -1,6 +1,10 @@
 "use client"; // Required for client-side interactivity
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation"; // Adjust based on your routing library
+import logoLight from "../../assets/logo_light_tp.png"; // Adjust the path to your light mode logo image
+import logoDark from "../../assets/logo_dark_tp.png"; // Adjust the path to your dark mode logo image
+import Settings from "../components/settings"; // Import the new settings component
+import "./register.css"; // Import the new CSS file
 
 export default function Register() {
   const [formData, setFormData] = useState({
@@ -14,6 +18,7 @@ export default function Register() {
   const [success, setSuccess] = useState("");
   const [redirectCountdown, setRedirectCountdown] = useState(5); // Countdown timer
   const [redirecting, setRedirecting] = useState(false); // To trigger redirection
+  const [isDarkMode, setIsDarkMode] = useState(false);
   const router = useRouter(); // To handle navigation
 
   const validateForm = () => {
@@ -102,58 +107,71 @@ export default function Register() {
     return () => clearInterval(timer); // Clean up the interval
   }, [redirecting, redirectCountdown, router]);
 
+  useEffect(() => {
+    const storedDarkMode = localStorage.getItem('dark_mode') === 'true';
+    setIsDarkMode(storedDarkMode);
+  }, []);
+
+  useEffect(() => {
+    document.body.className = isDarkMode ? 'dark-mode' : '';
+  }, [isDarkMode]);
+
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-      <h1 className="text-2xl font-bold mb-4">Register</h1>
-      <form
-        className="bg-white p-6 rounded shadow-md"
-        onSubmit={handleSubmit}
-        noValidate
-      >
-        <input
-          type="text"
-          name="username"
-          placeholder="Username"
-          value={formData.username}
-          onChange={handleChange}
-          className="w-full p-2 mb-3 border rounded text-black" // Added text-black class
-          autoComplete="username"
-          required
-        />
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          value={formData.email}
-          onChange={handleChange}
-          className="w-full p-2 mb-3 border rounded text-black" // Added text-black class
-          autoComplete="email"
-          required
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={formData.password}
-          onChange={handleChange}
-          className="w-full p-2 mb-3 border rounded text-black" // Added text-black class
-          autoComplete="new-password"
-          required
-        />
-        <button
-          type="submit"
-          className="w-full p-2 bg-blue-500 text-white rounded hover:bg-blue-700"
-        >
-          Register
-        </button>
-      </form>
-      {error && <p className="text-red-500 mt-4">{error}</p>}
-      {success && (
-        <div className="text-green-500 mt-4">
-          {success}
-          <p>Redirecting in {redirectCountdown} seconds...</p>
+    <div className="register-container">
+      <div className="register-box">
+        <div className="register-logo" style={{ textAlign: "center" }}>
+          <img src={isDarkMode ? logoDark.src : logoLight.src} alt="Logo" width={200} height={200} />
         </div>
-      )}
+        <form onSubmit={handleSubmit} noValidate>
+          <input
+            type="text"
+            name="username"
+            placeholder="Username"
+            value={formData.username}
+            onChange={handleChange}
+            className="register-input"
+            autoComplete="username"
+            required
+          />
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            value={formData.email}
+            onChange={handleChange}
+            className="register-input"
+            autoComplete="email"
+            required
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            value={formData.password}
+            onChange={handleChange}
+            className="register-input"
+            autoComplete="new-password"
+            required
+          />
+          <button
+            type="submit"
+            className="register-button"
+          >
+            Register
+          </button>
+        </form>
+        {error && <p className="register-error">{error}</p>}
+        {success && (
+          <div className="register-success">
+            {success}
+            <p>Redirecting in {redirectCountdown} seconds...</p>
+          </div>
+        )}
+        <p className="login-link" onClick={() => router.push("/auth/login")}>
+          Already have an account? Login
+        </p>
+      </div>
+      <Settings />
     </div>
   );
 }

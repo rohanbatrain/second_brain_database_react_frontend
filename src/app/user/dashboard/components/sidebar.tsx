@@ -1,6 +1,6 @@
 "use client"
 import React, { useState, useEffect } from 'react';
-import { FaHome, FaBook, FaCalendarAlt, FaCog, FaBars, FaMoon, FaSun, FaTasks, FaProjectDiagram, FaPen, FaChevronUp, FaTimes, FaCoffee } from 'react-icons/fa';
+import { FaHome, FaBook, FaCalendarAlt, FaCog, FaBars, FaBell, FaTasks, FaProjectDiagram, FaPen, FaChevronUp, FaTimes, FaCoffee, FaPlus } from 'react-icons/fa';
 import './sidebar.css';
 import logoLight from '../../../assets/logo_light.png'; // Import the light mode logo
 import logoDark from '../../../assets/logo_dark_tp.png'; // Import the dark mode logo
@@ -21,6 +21,8 @@ const Sidebar: React.FC = () => {
     const [activeSetting, setActiveSetting] = useState<string>('Appearance');
     const [searchQuery, setSearchQuery] = useState<string>('');
     const [isBuyMeCoffeeEmbedded, setIsBuyMeCoffeeEmbedded] = useState<boolean>(false);
+    const [isCreateTeamOpen, setIsCreateTeamOpen] = useState<boolean>(false);
+    const [newTeamName, setNewTeamName] = useState<string>('');
 
     useEffect(() => {
         const storedDarkMode = localStorage.getItem('dark_mode') === 'true';
@@ -30,6 +32,24 @@ const Sidebar: React.FC = () => {
     useEffect(() => {
         document.body.className = isDarkMode ? 'dark-mode' : '';
     }, [isDarkMode]);
+
+    useEffect(() => {
+        const handleKeyDown = (event: KeyboardEvent) => {
+            if (event.key === 'Escape') {
+                if (isSettingsOpen) {
+                    closeSettings();
+                }
+                if (isCreateTeamOpen) {
+                    closeCreateTeam();
+                }
+            }
+        };
+
+        document.addEventListener('keydown', handleKeyDown);
+        return () => {
+            document.removeEventListener('keydown', handleKeyDown);
+        };
+    }, [isSettingsOpen, isCreateTeamOpen]);
 
     const toggleCollapse = () => {
         setIsCollapsed(!isCollapsed);
@@ -66,6 +86,20 @@ const Sidebar: React.FC = () => {
         } else {
             window.open('https://buymeacoffee.com/rohanbatrain', '_blank', 'noopener,noreferrer');
         }
+    };
+
+    const openCreateTeam = () => {
+        setIsCreateTeamOpen(true);
+    };
+
+    const closeCreateTeam = () => {
+        setIsCreateTeamOpen(false);
+    };
+
+    const handleCreateTeamSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        // Handle team creation logic here
+        closeCreateTeam();
     };
 
     const renderSettingsContent = () => {
@@ -159,44 +193,22 @@ const Sidebar: React.FC = () => {
     return (
         <>
             <div className={`sidebar ${isDarkMode ? 'dark-mode' : ''} ${isCollapsed ? 'collapsed' : ''}`}>
+                <div className="sidebar-header">
+                    <FaBars className="collapse-icon" onClick={toggleCollapse} />
+                    <FaBell className="notification-icon" />
+                </div>
                 <div className="sidebar-logo">
                     <img src={getLogo()} alt="Logo" className="logo" />
                 </div>
-                <div className="sidebar-header">
-                    <FaBars className="collapse-icon" onClick={toggleCollapse} />
-                    {isDarkMode ? (
-                        <FaSun className="toggle-dark-mode-icon" onClick={toggleDarkMode} />
-                    ) : (
-                        <FaMoon className="toggle-dark-mode-icon" onClick={toggleDarkMode} />
-                    )}
-                </div>
                 <ul className="sidebar-menu">
-                    <li className="sidebar-item">
-                        <FaPen className="sidebar-icon" />
-                        <span className="sidebar-text">Quick Capture</span>
-                    </li>
-                    <li className="sidebar-category">Private</li>
+                    <li className="sidebar-category">Personal Space</li>
                     <li className="sidebar-item">
                         <FaHome className="sidebar-icon" />
                         <span className="sidebar-text">Home</span>
                     </li>
-                    <li className="sidebar-item">
-                        <FaBook className="sidebar-icon" />
-                        <span className="sidebar-text">Capture</span>
+                    <li className={`sidebar-category ${isCollapsed ? 'space' : ''}`}>
+                        Team Space <FaPlus className="create-team-icon" onClick={openCreateTeam} />
                     </li>
-                    <li className="sidebar-item">
-                        <FaCalendarAlt className="sidebar-icon" />
-                        <span className="sidebar-text">Calendar</span>
-                    </li>
-                    <li className="sidebar-item">
-                        <FaTasks className="sidebar-icon" />
-                        <span className="sidebar-text">Tasks</span>
-                    </li>
-                    <li className="sidebar-item">
-                        <FaProjectDiagram className="sidebar-icon" />
-                        <span className="sidebar-text">Projects</span>
-                    </li>
-                    <li className={`sidebar-category ${isCollapsed ? 'space' : ''}`}>Team Space</li>
                     <li className={`sidebar-item placeholder ${isCollapsed ? 'hidden' : ''}`}>No Team Spaces</li> {/* Placeholder for empty Team Space */}
                 </ul>
                 <div className="sidebar-profile">
@@ -241,6 +253,27 @@ const Sidebar: React.FC = () => {
                         <div className="settings-content-area">
                             {renderSettingsContent()}
                         </div>
+                    </div>
+                </div>
+            )}
+            {isCreateTeamOpen && (
+                <div className={`create-team-popup ${isDarkMode ? 'dark-mode' : ''}`}>
+                    <div className="create-team-header">
+                        <FaTimes className="close-icon" onClick={closeCreateTeam} />
+                    </div>
+                    <div className="create-team-container">
+                        <form onSubmit={handleCreateTeamSubmit}>
+                            <div className="create-team-question">
+                                <label>Please tell us your new team name</label>
+                                <input
+                                    type="text"
+                                    value={newTeamName}
+                                    onChange={(e) => setNewTeamName(e.target.value)}
+                                    required
+                                />
+                            </div>
+                            <button type="submit" className="create-team-submit">Create Team</button>
+                        </form>
                     </div>
                 </div>
             )}

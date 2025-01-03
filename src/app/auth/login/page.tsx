@@ -1,6 +1,11 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
+import logoLight from "../../assets/logo_light_tp.png"; // Adjust the path to your light mode logo image
+import logoDark from "../../assets/logo_dark_tp.png"; // Adjust the path to your dark mode logo image
+import Settings from "../components/settings"; // Import the new settings component
+import "./login.css"; // Import the new CSS file
 
 export default function Login() {
     const [formData, setFormData] = useState({
@@ -12,6 +17,7 @@ export default function Login() {
     const [success, setSuccess] = useState("");
     const [redirectCountdown, setRedirectCountdown] = useState(5);
     const [redirecting, setRedirecting] = useState(false);
+    const [isDarkMode, setIsDarkMode] = useState(false);
     const router = useRouter();
 
     const validateForm = () => {
@@ -91,48 +97,61 @@ export default function Login() {
         return () => clearInterval(timer);
     }, [redirecting, redirectCountdown, router]);
 
+    useEffect(() => {
+        const storedDarkMode = localStorage.getItem('dark_mode') === 'true';
+        setIsDarkMode(storedDarkMode);
+    }, []);
+
+    useEffect(() => {
+        document.body.className = isDarkMode ? 'dark-mode' : '';
+    }, [isDarkMode]);
+
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-            <h1 className="text-2xl font-bold mb-4">Login</h1>
-            <form
-                className="bg-white p-6 rounded shadow-md"
-                onSubmit={handleSubmit}
-                noValidate
-            >
-                <input
-                    type="email"
-                    name="email"
-                    placeholder="Email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    className="w-full p-2 mb-3 border rounded text-black"
-                    autoComplete="email"
-                    required
-                />
-                <input
-                    type="password"
-                    name="password"
-                    placeholder="Password"
-                    value={formData.password}
-                    onChange={handleChange}
-                    className="w-full p-2 mb-3 border rounded text-black"
-                    autoComplete="current-password"
-                    required
-                />
-                <button
-                    type="submit"
-                    className="w-full p-2 bg-blue-500 text-white rounded hover:bg-blue-700"
-                >
-                    Login
-                </button>
-            </form>
-            {error && <p className="text-red-500 mt-4">{error}</p>}
-            {success && (
-                <div className="text-green-500 mt-4">
-                    {success}
-                    <p>Redirecting in {redirectCountdown} seconds...</p>
+        <div className="login-container">
+            <div className="login-box">
+                <div className="login-logo" style={{ textAlign: "center" }}>
+                    <Image src={isDarkMode ? logoDark : logoLight} alt="Logo" width={200} height={200} />
                 </div>
-            )}
+                <form onSubmit={handleSubmit} noValidate>
+                    <input
+                        type="email"
+                        name="email"
+                        placeholder="Email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        className="login-input"
+                        autoComplete="email"
+                        required
+                    />
+                    <input
+                        type="password"
+                        name="password"
+                        placeholder="Password"
+                        value={formData.password}
+                        onChange={handleChange}
+                        className="login-input"
+                        autoComplete="current-password"
+                        required
+                    />
+                    <button
+                        type="submit"
+                        className="login-button"
+                    >
+                        Login
+                    </button>
+                </form>
+                {error && <p className="login-error">{error}</p>}
+                {success && (
+                    <div className="login-success">
+                        {success}
+                        <p>Redirecting in {redirectCountdown} seconds...</p>
+                    </div>
+                )}
+                <p className="register-link" onClick={() => router.push("/auth/register")}>
+                    Don't have an account? Register
+                </p>
+            </div>
+            <Settings />
         </div>
     );
 }
