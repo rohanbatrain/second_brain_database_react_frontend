@@ -1,8 +1,8 @@
 "use client"; // Required for client-side interactivity
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation"; // Adjust based on your routing library
-import logoLight from "../../assets/logo_light_tp.png"; // Adjust the path to your light mode logo image
-import logoDark from "../../assets/logo_dark_tp.png"; // Adjust the path to your dark mode logo image
+import logoLight from "../assets/logo_light_tp.png"; // Adjust the path to your light mode logo image
+import logoDark from "../assets/logo_dark_tp.png"; // Adjust the path to your dark mode logo image
 import Settings from "../components/settings"; // Import the new settings component
 import "./register.css"; // Import the new CSS file
 
@@ -167,7 +167,7 @@ export default function Register() {
             <p>Redirecting in {redirectCountdown} seconds...</p>
           </div>
         )}
-        <p className="login-link" onClick={() => router.push("/auth/login")}>
+        <p className="login-link" onClick={() => router.push("/login")}>
           Already have an account? Login
         </p>
       </div>

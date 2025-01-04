@@ -20,7 +20,7 @@ const Settings: React.FC = () => {
     const toggleDarkMode = () => {
         setIsDarkMode(!isDarkMode);
         localStorage.setItem('dark_mode', (!isDarkMode).toString());
-        window.location.reload(); // Refresh the page when the setting changes
+        // window.location.reload(); // Refresh the page when the setting changes
     };
 
     const openSettings = () => {

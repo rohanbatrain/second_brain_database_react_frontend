@@ -2,16 +2,16 @@
 import React, { useState, useEffect } from 'react';
 import { FaHome, FaBook, FaCalendarAlt, FaCog, FaBars, FaBell, FaTasks, FaProjectDiagram, FaPen, FaChevronUp, FaTimes, FaCoffee, FaPlus } from 'react-icons/fa';
 import './sidebar.css';
-import logoLight from '../../../assets/logo_light.png'; // Import the light mode logo
-import logoDark from '../../../assets/logo_dark_tp.png'; // Import the dark mode logo
-import logoCollapsedLight from '../../../assets/mental-health.png'; // Import the collapsed light mode logo
-import logoCollapsedDark from '../../../assets/mental-health.png'; // Import the collapsed dark mode logo
+import logoLight from '../../assets/logo_light.png'; // Import the light mode logo
+import logoDark from '../../assets/logo_dark_tp.png'; // Import the dark mode logo
+import logoCollapsedLight from '../../assets/mental-health.png'; // Import the collapsed light mode logo
+import logoCollapsedDark from '../../assets/mental-health.png'; // Import the collapsed dark mode logo
 
 const logoLightUrl: string = logoLight.src;
 const logoDarkUrl: string = logoDark.src;
 const logoCollapsedLightUrl: string = logoCollapsedLight.src;
 const logoCollapsedDarkUrl: string = logoCollapsedDark.src;
-const profilePicUrl: string = 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; // Profile picture URL
+const profilePicUrl: string = 'https://rohanbatra.sirv.com/mental-health.png'; // Profile picture URL
 
 const Sidebar: React.FC = () => {
     const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
@@ -23,10 +23,27 @@ const Sidebar: React.FC = () => {
     const [isBuyMeCoffeeEmbedded, setIsBuyMeCoffeeEmbedded] = useState<boolean>(false);
     const [isCreateTeamOpen, setIsCreateTeamOpen] = useState<boolean>(false);
     const [newTeamName, setNewTeamName] = useState<string>('');
+    const [username, setUsername] = useState<string>('John');
+    const [email, setEmail] = useState<string>('john@example.com');
+    const [plan, setPlan] = useState<string>('Free');
+    const [team, setTeam] = useState<string>('No Team');
+    const [pfp, setPfp] = useState<string>(profilePicUrl);
 
     useEffect(() => {
         const storedDarkMode = localStorage.getItem('dark_mode') === 'true';
         setIsDarkMode(storedDarkMode);
+
+        const storedUsername = localStorage.getItem('username') || 'John';
+        const storedEmail = localStorage.getItem('email') || 'john@example.com';
+        const storedPlan = localStorage.getItem('plan') || 'Free';
+        const storedTeam = localStorage.getItem('team') || 'No Team';
+        const storedPfp = localStorage.getItem('pfp') || profilePicUrl;
+
+        setUsername(storedUsername);
+        setEmail(storedEmail);
+        setPlan(storedPlan);
+        setTeam(storedTeam);
+        setPfp(storedPfp);
     }, []);
 
     useEffect(() => {
@@ -125,13 +142,6 @@ const Sidebar: React.FC = () => {
                                 <span className="slider"></span>
                             </label>
                         </div>
-                        <div className="settings-option">
-                            <span>Another feature</span>
-                            <label className="toggle-switch">
-                                <input type="checkbox" />
-                                <span className="slider"></span>
-                            </label>
-                        </div>
                     </div>
                 );
             case 'Activity Log':
@@ -180,6 +190,72 @@ const Sidebar: React.FC = () => {
                         </div>
                     </div>
                 );
+            case 'Account':
+                return (
+                    <div className="settings-content">
+                        <h2 className="settings-category-heading">Account</h2>
+                        <div className="settings-option">
+                            <label>Username:</label>
+                            <input
+                                type="text"
+                                value={username}
+                                onChange={(e) => {
+                                    setUsername(e.target.value);
+                                    localStorage.setItem('username', e.target.value);
+                                }}
+                                className="settings-input"
+                            />
+                        </div>
+                        <div className="settings-option">
+                            <label>Email:</label>
+                            <input
+                                type="email"
+                                value={email}
+                                onChange={(e) => {
+                                    setEmail(e.target.value);
+                                    localStorage.setItem('email', e.target.value);
+                                }}
+                                className="settings-input"
+                            />
+                        </div>
+                        <div className="settings-option">
+                            <label>Plan:</label>
+                            <input
+                                type="text"
+                                value={plan}
+                                onChange={(e) => {
+                                    setPlan(e.target.value);
+                                    localStorage.setItem('plan', e.target.value);
+                                }}
+                                className="settings-input"
+                            />
+                        </div>
+                        <div className="settings-option">
+                            <label>Team:</label>
+                            <input
+                                type="text"
+                                value={team}
+                                onChange={(e) => {
+                                    setTeam(e.target.value);
+                                    localStorage.setItem('team', e.target.value);
+                                }}
+                                className="settings-input"
+                            />
+                        </div>
+                        <div className="settings-option">
+                            <label>Profile Picture URL:</label>
+                            <input
+                                type="text"
+                                value={pfp}
+                                onChange={(e) => {
+                                    setPfp(e.target.value);
+                                    localStorage.setItem('pfp', e.target.value);
+                                }}
+                                className="settings-input"
+                            />
+                        </div>
+                    </div>
+                );
             // Add more cases for other settings here
             default:
                 return null;
@@ -212,8 +288,8 @@ const Sidebar: React.FC = () => {
                     <li className={`sidebar-item placeholder ${isCollapsed ? 'hidden' : ''}`}>No Team Spaces</li> {/* Placeholder for empty Team Space */}
                 </ul>
                 <div className="sidebar-profile">
-                    <img src={profilePicUrl} alt="Profile" className="profile-pic" />
-                    <span className={`profile-name ${isCollapsed ? 'hidden' : ''}`}>John</span>
+                    <img src={pfp} alt="Profile" className="profile-pic" />
+                    <span className={`profile-name ${isCollapsed ? 'hidden' : ''}`}>{username}</span>
                     <FaChevronUp className="profile-menu-icon" onClick={toggleMenu} />
                     {isMenuOpen && (
                         <div className="profile-menu">

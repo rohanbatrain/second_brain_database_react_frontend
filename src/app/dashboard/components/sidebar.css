@@ -493,10 +493,40 @@
 
 .settings-option {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
-    padding-right: 20px; /* Add padding to create distance between text and toggle */
+    justify-content: space-between; /* Ensure space between text and toggle */
+    align-items: center; /* Align items vertically */
+    margin-bottom: 20px; /* Increase bottom margin for better spacing */
+}
+
+.settings-option label {
+    margin-bottom: 0; /* Remove bottom margin */
+    font-weight: bold; /* Make labels bold */
+}
+
+.settings-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #dcdcdc;
+    border-radius: 4px;
+    font-size: 1em;
+    color: #000000; /* Light mode text color */
+    background-color: #ffffff; /* Light mode background color */
+    transition: border-color 0.3s;
+}
+
+.settings-input:focus {
+    border-color: #007bff; /* Highlight border on focus */
+    outline: none; /* Remove default outline */
+}
+
+.dark-mode .settings-input {
+    color: #ffffff; /* Dark mode text color */
+    background-color: #333333; /* Dark mode background color */
+    border: 1px solid #444; /* Adjust border color for dark mode */
+}
+
+.dark-mode .settings-input:focus {
+    border-color: #1e90ff; /* Highlight border on focus for dark mode */
 }
 
 .toggle-switch {
@@ -715,4 +745,33 @@ input:checked + .slider:before {
 
 .dark-mode .create-team-submit:hover {
     background: #003f7f;
+}
+
+/* New styles for settings input fields */
+.settings-input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #dcdcdc;
+    border-radius: 4px;
+    font-size: 1em;
+    color: #000000; /* Light mode text color */
+    background-color: #ffffff; /* Light mode background color */
+    transition: border-color 0.3s;
+}
+
+.settings-input:focus {
+    border-color: #007bff; /* Highlight border on focus */
+    outline: none; /* Remove default outline */
+}
+
+.dark-mode .settings-input {
+    color: #ffffff; /* Dark mode text color */
+    background-color: #333333; /* Dark mode background color */
+    border: 1px solid #444; /* Adjust border color for dark mode */
+}
+
+.dark-mode .settings-input:focus {
+    border-color: #1e90ff; /* Highlight border on focus for dark mode */
 }

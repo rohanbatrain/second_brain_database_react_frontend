@@ -2,8 +2,8 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import logoLight from "../../assets/logo_light_tp.png"; // Adjust the path to your light mode logo image
-import logoDark from "../../assets/logo_dark_tp.png"; // Adjust the path to your dark mode logo image
+import logoLight from "../assets/logo_light_tp.png"; // Adjust the path to your light mode logo image
+import logoDark from "../assets/logo_dark_tp.png"; // Adjust the path to your dark mode logo image
 import Settings from "../components/settings"; // Import the new settings component
 import "./login.css"; // Import the new CSS file
 
@@ -147,7 +147,7 @@ export default function Login() {
                         <p>Redirecting in {redirectCountdown} seconds...</p>
                     </div>
                 )}
-                <p className="register-link" onClick={() => router.push("/auth/register")}>
+                <p className="register-link" onClick={() => router.push("/register")}>
                     Don't have an account? Register
                 </p>
             </div>
