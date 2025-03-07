@@ -1,3 +1,8 @@
+# NOTICE
+
+Shifting my focus to [flutter](https://github.com/rohanbatrain/second_brain_database_flutter_frontend.git) to support cross platform developement all at once. 
+
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
