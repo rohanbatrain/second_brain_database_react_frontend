@@ -148,7 +148,7 @@ export default function Login() {
                     </div>
                 )}
                 <p className="register-link" onClick={() => router.push("/register")}>
-                    Don't have an account? Register
+                    Don&apost have an account? Register
                 </p>
             </div>
             <Settings />
