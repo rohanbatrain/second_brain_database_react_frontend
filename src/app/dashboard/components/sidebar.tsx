@@ -1,6 +1,6 @@
 "use client"
 import React, { useState, useEffect } from 'react';
-import { FaHome, FaBook, FaCalendarAlt, FaCog, FaBars, FaBell, FaTasks, FaProjectDiagram, FaPen, FaChevronUp, FaTimes, FaCoffee, FaPlus } from 'react-icons/fa';
+import { FaHome, FaCog, FaBars, FaBell, FaChevronUp, FaTimes, FaCoffee, FaPlus } from 'react-icons/fa';
 import './sidebar.css';
 import logoLight from '../../assets/logo_light.png'; // Import the light mode logo
 import logoDark from '../../assets/logo_dark_tp.png'; // Import the dark mode logo
