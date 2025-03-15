@@ -71,7 +71,7 @@ export default function Login() {
                 const data = await response.json();
                 setError(data.message || "Login failed. Please try again.");
             }
-        } catch (err) {
+        } catch () {
             setError("Unable to connect to the server. Please try again later.");
         }
     };
